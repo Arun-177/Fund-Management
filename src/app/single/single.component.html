@@ -1,0 +1,20 @@
+<p>single works!</p>
+<div>{{item}}</div>
+
+<div *ngIf="data.length>0">
+    <table>
+            <tr>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Credit / Debit</th>
+                <th>Name</th>
+            </tr>
+            <tr *ngFor="let tmp of data">
+                <td>{{changeDateFormat(tmp.date)}}</td>
+                <td>{{tmp.amount}}</td>
+                <td>{{tmp.creditdebit}}</td>
+                <td>{{tmp.name}}</td>
+            </tr>
+    </table>
+    <!-- <div *ngFor="let tmp of data">{{changeDateFormat(tmp.date)}} - {{tmp.amount}}</div> -->
+</div>
