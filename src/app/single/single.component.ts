@@ -9,50 +9,6 @@ import { Color, Label  } from 'ng2-charts';
 
 import {SingleService} from './single.service'
 
-export interface UserData {
-  date: any;
-  name: any;
-  quantity?:any,
-  price?:any,
-  amount?:any,
-  creditdebit?:any,
-  comment?:any,
-
-}
-
-/** Constants used to fill up our data base. */
-const FRUITS: string[] = [
-  'blueberry',
-  'lychee',
-  'kiwi',
-  'mango',
-  'peach',
-  'lime',
-  'pomegranate',
-  'pineapple',
-];
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
-];
-
 @Component({
   selector: 'app-single',
   templateUrl: './single.component.html',
@@ -63,8 +19,8 @@ const NAMES: string[] = [
 export class SingleComponent implements OnInit, AfterViewInit {
   @Input() item:any;
 
-    displayedColumns: string[] = ['date', 'name','quantity','price','amount','creditdebit','comment',];
-  dataSource: MatTableDataSource<UserData>;
+  displayedColumns: string[] = ['date', 'name','quantity','price','amount','creditdebit','comment',];
+  dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -96,19 +52,7 @@ export class SingleComponent implements OnInit, AfterViewInit {
 
 
 
-  constructor(private service: SingleService) { 
-
-        // Create 100 users
-    const users = [
-      {
-      date: '1',
-      name: 'A'
-  }
-    ]
-
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
-  }
+  constructor(private service: SingleService) { }
 
   data:any;
 
@@ -117,7 +61,7 @@ export class SingleComponent implements OnInit, AfterViewInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
+    // console.log(changes);
     if(!changes.firstChange){
       this.getData();
     }
@@ -129,6 +73,8 @@ export class SingleComponent implements OnInit, AfterViewInit {
     this.service.getData(this.item).subscribe(
       (res) => {
         if(res.status=='success'){
+          // console.log(res.message)
+          this.dataSource = new MatTableDataSource(res.message);
           const todayDate = new Date();
           const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
           this.lineChartLabels=[];
@@ -141,17 +87,19 @@ export class SingleComponent implements OnInit, AfterViewInit {
             this!.lineChartData[1]!.data!.push(0);
             this!.lineChartData[2]!.data!.push(0);
             this!.lineChartData[3]!.data!.push(0);
-            console.log(todayDate.getDate())
+            // console.log(todayDate.getDate())
             this.lineChartLabels.push(i+ ' ' + month[todayDate.getMonth()])
           }
+          let tmp:any;
           res.message.forEach((element:any)=>{
-            element.date = this.changeDateFormat(element.date);
-            console.log(element.date,element.date.slice(0,element.date.indexOf(',')))
+            tmp = this.changeDateFormat(element.date);
+            // console.log(tmp,tmp.slice(0,tmp.indexOf(',')))
             if(element.creditdebit=='credit'){
-            this!.lineChartData[1]!.data![this.lineChartLabels.indexOf(element.date.slice(0,element.date.indexOf(',')))]+=element.amount;
+            this!.lineChartData[1]!.data![this.lineChartLabels.indexOf(tmp.slice(0,tmp.indexOf(',')))]+=element.amount;
             }else{
-            this!.lineChartData[0]!.data![this.lineChartLabels.indexOf(element.date.slice(0,element.date.indexOf(',')))]+=element.amount;
+            this!.lineChartData[0]!.data![this.lineChartLabels.indexOf(tmp.slice(0,tmp.indexOf(',')))]+=element.amount;
             }
+            element.date1 = Number(((this.getDate(element.date) < 10) ? '0' : '') + this.getDate(element.date));
           })
           this!.lineChartData[3]!.data[0] = this!.lineChartData[1]!.data[0];
           this!.lineChartData[2]!.data[0] = this!.lineChartData[0]!.data[0];
@@ -183,7 +131,7 @@ export class SingleComponent implements OnInit, AfterViewInit {
       ((date.getMinutes() < 10) ? '0' : '') + date.getMinutes() + ':' + 
       ((date.getSeconds() < 10) ? '0' : '') + date.getSeconds()
     }
-    return date.getDate() + ' ' + month[date.getMonth()] + ', ' + date.getFullYear();
+    return ((date.getDate() < 10) ? '0' : '') + date.getDate() + ' ' + month[date.getMonth()] + ', ' + date.getFullYear();
 
   }
 
@@ -202,20 +150,10 @@ export class SingleComponent implements OnInit, AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  getDate(value:any){
+
+    const date = new Date(value);
+    return date.getDate();
+  }
 }
-
-/** Builds and returns a new User. */
-// function createNewUser(id: any): UserData {
-//   const name =
-//     NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-//     ' ' +
-//     NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-//     '.';
-
-//   return {
-//     id: id.toString(),
-//     name: name,
-//     progress: Math.round(Math.random() * 100).toString(),
-//     fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
-//   };
-// }

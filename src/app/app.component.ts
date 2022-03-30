@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
   }
 
   clickedItem(value:string){
-    console.log('clickedItem',value);
+    // console.log('clickedItem',value);
 
     this.service.countItem(value).subscribe(
       (res) => {
@@ -65,7 +65,7 @@ export class AppComponent implements OnInit {
 
     this.service.getDropDownItem().subscribe(
       (res) => {
-        console.log('hii',res)
+        // console.log('hii',res)
         if(res.status=='success'){
           this.dropDownList = res.message
         }
