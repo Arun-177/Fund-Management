@@ -1,0 +1,26 @@
+.options{
+
+    border: black 1px solid;
+
+    margin-top: 10px;
+    font-size: 18px;
+    
+    display: flex;
+    // flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+
+.list-header{
+
+    margin:2% 4%;
+
+    cursor: pointer;
+}
+
+
+.change-font-color-on-click{
+    color:blue;
+}
