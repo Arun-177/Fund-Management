@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
   getLastLoginTime() {
     this.service.getLastLoginTime().subscribe(
       (res) => {
-        console.log('hii',res)
         if(res.status=='success'){
           this.lastLoggedInTime = res.message
         }
