@@ -1,5 +1,7 @@
 .options{
 
+    border: black 1px solid;
+
     margin-top: 10px;
     font-size: 18px;
     
@@ -7,6 +9,7 @@
     // flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .list-header{
@@ -14,6 +17,8 @@
     flex-direction: column;
     align-items: center;
     cursor: pointer;
+    margin:2% 4%;
+
 }
 
 .change-font-color-on-click{

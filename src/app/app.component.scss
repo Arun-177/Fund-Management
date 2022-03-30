@@ -1,5 +1,7 @@
 .options{
 
+    border: black 1px solid;
+
     margin-top: 10px;
     font-size: 18px;
     
@@ -7,12 +9,14 @@
     // flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    flex-wrap: wrap;
+
 }
 
 .list-header{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+    margin:2% 4%;
+
     cursor: pointer;
 }
 

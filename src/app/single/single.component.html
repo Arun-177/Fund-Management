@@ -1,20 +1,42 @@
 <p>single works!</p>
 <div>{{item}}</div>
 
-<div *ngIf="data.length>0">
+<div class="content">
+
+  <div *ngIf="data.length>0" class="table">
     <table>
-            <tr>
-                <th>Date</th>
-                <th>Amount</th>
-                <th>Credit / Debit</th>
-                <th>Name</th>
-            </tr>
+      <tr>
+        <th>Date</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Amount</th>
+        <th>Credit / Debit</th>
+        <th>Comment</th>
+      </tr>
             <tr *ngFor="let tmp of data">
-                <td>{{changeDateFormat(tmp.date)}}</td>
+                <td>{{tmp.date}}</td>
+                <td>{{tmp.name}}</td>
+                <td>{{tmp.quantity}}</td>
+                <td>{{tmp.price}}</td>
                 <td>{{tmp.amount}}</td>
                 <td>{{tmp.creditdebit}}</td>
-                <td>{{tmp.name}}</td>
-            </tr>
+                <td>{{tmp.comment}}</td>
+              </tr>
     </table>
     <!-- <div *ngFor="let tmp of data">{{changeDateFormat(tmp.date)}} - {{tmp.amount}}</div> -->
+  </div>
+  <div class="chart">
+    <canvas baseChart width="100%" height="100%"
+    [datasets]="lineChartData"
+    [labels]="lineChartLabels"
+    [options]="lineChartOptions"
+    [colors]="lineChartColors"
+    [legend]="lineChartLegend"
+    [chartType]="lineChartType"
+    [plugins]="lineChartPlugins"
+    >
+  </canvas>
+  </div>
+
 </div>
