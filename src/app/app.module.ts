@@ -5,17 +5,17 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
-import {MatButtonModule} from '@angular/material/button';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import { MatSliderModule } from '@angular/material/slider';
+import {MaterialExampleModule} from '../material.module';
 
-import { FormsModule } from '@angular/forms';
+
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SingleComponent } from './single/single.component';
+import {MatNativeDateModule} from '@angular/material/core';
 import { MultipleComponent } from './multiple/multiple.component';
 
 @NgModule({
@@ -28,11 +28,12 @@ import { MultipleComponent } from './multiple/multiple.component';
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
-    MatButtonModule, MatCheckboxModule,MatSliderModule,
+    MaterialExampleModule,MatNativeDateModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ChartsModule
+    ChartsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
