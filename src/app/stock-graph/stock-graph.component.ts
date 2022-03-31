@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, Label  } from 'ng2-charts';
@@ -9,7 +9,7 @@ import { Color, Label  } from 'ng2-charts';
   templateUrl: './stock-graph.component.html',
   styleUrls: ['./stock-graph.component.scss']
 })
-export class StockGraphComponent implements OnInit {
+export class StockGraphComponent implements OnInit, OnChanges {
     @Input() graphData:any;
 
 
@@ -42,6 +42,34 @@ export class StockGraphComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.modifyData();
+
+  }
+  ngOnChanges(): void {
+    this.modifyData();
+  }
+
+    changeDateFormat(timestamp:number){
+    const date = new Date(timestamp);
+    const month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+    if(date.getHours() !=0 || date.getMinutes() !=0 || date.getSeconds() !=0){
+      return ((date.getDate() < 10) ? '0' : '') + date.getDate() + ' ' + month[date.getMonth()] + ', ' + date.getFullYear() + ' at ' +
+      ((date.getHours() < 10) ? '0' : '') + date.getHours() + ':' + 
+      ((date.getMinutes() < 10) ? '0' : '') + date.getMinutes() + ':' + 
+      ((date.getSeconds() < 10) ? '0' : '') + date.getSeconds()
+    }
+    return ((date.getDate() < 10) ? '0' : '') + date.getDate() + ' ' + month[date.getMonth()] + ', ' + date.getFullYear();
+
+  }
+
+  getDate(value:any){
+
+    const date = new Date(value);
+    return date.getDate();
+  }
+
+  modifyData(){
+    console.log('this.graphData - ',this.graphData)
     if(this.graphData){
       const todayDate = new Date();
       const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
@@ -75,25 +103,5 @@ export class StockGraphComponent implements OnInit {
       }
     }
   }
-
-    changeDateFormat(timestamp:number){
-    const date = new Date(timestamp);
-    const month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
-    if(date.getHours() !=0 || date.getMinutes() !=0 || date.getSeconds() !=0){
-      return ((date.getDate() < 10) ? '0' : '') + date.getDate() + ' ' + month[date.getMonth()] + ', ' + date.getFullYear() + ' at ' +
-      ((date.getHours() < 10) ? '0' : '') + date.getHours() + ':' + 
-      ((date.getMinutes() < 10) ? '0' : '') + date.getMinutes() + ':' + 
-      ((date.getSeconds() < 10) ? '0' : '') + date.getSeconds()
-    }
-    return ((date.getDate() < 10) ? '0' : '') + date.getDate() + ' ' + month[date.getMonth()] + ', ' + date.getFullYear();
-
-  }
-
-  getDate(value:any){
-
-    const date = new Date(value);
-    return date.getDate();
-  }
-
 
 }
