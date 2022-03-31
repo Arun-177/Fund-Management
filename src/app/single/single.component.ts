@@ -10,8 +10,11 @@ import {SingleService} from './single.service'
 
 export class SingleComponent implements OnInit {
   @Input() item:any;
+  @Input() category:any;
+  oldItem:string | undefined;
 
   data:any;
+  loadingTable:boolean = false
 
   constructor(private service: SingleService) { }
 
@@ -22,27 +25,34 @@ export class SingleComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     // console.log(changes);
-    if(!changes.firstChange){
+    if(!changes.firstChange && this.oldItem != this.item){
+      // setTimeout(()=>{
+      //   this.getData();
+      // },10)
       this.getData();
+      this.oldItem = this.item;
     }
 
   }
 
   
     getData(){
-    this.service.getData(this.item).subscribe(
-      (res) => {
-        if(res.status=='success'){          
-          this.data = res.message
-        }
-        else{
-          this.data = undefined
+      this.loadingTable = true;      
+      this.service.getData(this.item).subscribe(
+        (res) => {
+          if(res.status=='success'){          
+            this.data = res.message
+            console.log('data updated in single.compoent.ts - ',this.data)
+            this.loadingTable = false;
+          }
+          else{
+            this.data = undefined
 
-        }
-      },
-      (err) => {
-        this.data=undefined;
-      });
+          }
+        },
+        (err) => {
+          this.data=undefined;
+        });
 
   };
 }

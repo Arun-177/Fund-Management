@@ -69,7 +69,7 @@ export class StockGraphComponent implements OnInit, OnChanges {
   }
 
   modifyData(){
-    console.log('this.graphData - ',this.graphData)
+    // console.log('this.graphData - ',this.graphData)
     if(this.graphData){
       const todayDate = new Date();
       const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];

@@ -10,7 +10,7 @@
     <div class="list-header" *ngFor="let tmp of dropDownList" (click)="clickedItem(tmp)" [ngClass]="{'change-font-color-on-click': (item==tmp && items==undefined)}">{{tmp}}</div>
 </div>
 
-<app-single *ngIf="isSingle" [item]="item"></app-single>
-<app-multiple *ngIf="isMultiple" [items]="items"></app-multiple>
+<app-single *ngIf="isSingle" [item]="item"  [category]="category"></app-single>
+<app-multiple *ngIf="isMultiple" [items]="items" [category]="category"></app-multiple>
 
 <!-- <mat-slider thumbLabel tickInterval="5" min="1" max="100" step="1" value="50" style="width: 600px;"></mat-slider> -->

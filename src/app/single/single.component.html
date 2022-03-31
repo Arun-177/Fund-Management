@@ -3,8 +3,8 @@
 
 <div class="content">
 
-  <div *ngIf="data.length>0" class="table">
-    <app-stock-table-mat [data]="data"></app-stock-table-mat>
+  <div *ngIf="!loadingTable && data.length>0" class="table">
+    <app-stock-table-mat *ngIf="category != 'Accounts'" [data]="data"></app-stock-table-mat>
   </div>
   
   <div class="chart">
