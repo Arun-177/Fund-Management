@@ -6,11 +6,11 @@ import {MatTableDataSource} from '@angular/material/table';
 
 
 @Component({
-  selector: 'app-mat-stock-table',
-  templateUrl: './mat-stock-table.component.html',
-  styleUrls: ['./mat-stock-table.component.scss']
+  selector: 'app-stock-table-mat',
+  templateUrl: './stock-table-mat.component.html',
+  styleUrls: ['./stock-table-mat.component.scss']
 })
-export class MatStockTableComponent implements OnInit,AfterViewInit {
+export class StockTableMatComponent implements OnInit,AfterViewInit {
   
   @Input() data:any;
 

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MatStockTableComponent } from './mat-stock-table.component';
+import { StockTableMatComponent } from './stock-table-mat.component';
 
-describe('MatStockTableComponent', () => {
-  let component: MatStockTableComponent;
-  let fixture: ComponentFixture<MatStockTableComponent>;
+describe('StockTableMatComponent', () => {
+  let component: StockTableMatComponent;
+  let fixture: ComponentFixture<StockTableMatComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MatStockTableComponent ]
+      declarations: [ StockTableMatComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MatStockTableComponent);
+    fixture = TestBed.createComponent(StockTableMatComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
