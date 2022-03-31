@@ -1,10 +1,8 @@
-<p>single works!</p>
-<div>{{item}}</div>
-
 <div class="content">
 
   <div *ngIf="!loadingTable && data.length>0" class="table">
     <app-stock-table-mat *ngIf="category != 'Accounts'" [data]="data"></app-stock-table-mat>
+    <app-bank-table-mat *ngIf="category == 'Accounts'" [data]="data"></app-bank-table-mat>
   </div>
   
   <div class="chart">

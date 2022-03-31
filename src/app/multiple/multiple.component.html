@@ -1,6 +1,3 @@
-<p>multiple works!</p>
-<!-- <div>{{items}}</div> -->
-
 <div class="options" >
     <div class="list-header" *ngFor="let tmp of items" (click)="clickedItem(tmp)" [ngClass]="{'change-font-color-on-click': item==tmp}">{{tmp}}</div>
 </div>
