@@ -8,6 +8,7 @@ import { Component, OnInit,Input } from '@angular/core';
 export class MultipleComponent implements OnInit {
   
   @Input() items:any;
+  @Input() category:any;
   loadsingle:boolean = false;
   item:any | undefined;
 

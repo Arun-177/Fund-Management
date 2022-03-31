@@ -3,21 +3,12 @@
 
 <div class="content">
 
-  <div *ngIf="data.length>0" class="table">
-    <app-mat-stock-table [data]="data"></app-mat-stock-table>
+  <div *ngIf="!loadingTable && data.length>0" class="table">
+    <app-stock-table-mat *ngIf="category != 'Accounts'" [data]="data"></app-stock-table-mat>
   </div>
   
   <div class="chart">
-    <canvas baseChart width="100%" height="100%"
-    [datasets]="lineChartData"
-    [labels]="lineChartLabels"
-    [options]="lineChartOptions"
-    [colors]="lineChartColors"
-    [legend]="lineChartLegend"
-    [chartType]="lineChartType"
-    [plugins]="lineChartPlugins"
-    >
-  </canvas>
+    <app-stock-graph [graphData]="data"></app-stock-graph>
   </div>
 
 </div>

@@ -15,7 +15,8 @@ export class AppComponent implements OnInit {
   isSingle:boolean = false;
   isMultiple:boolean = false;
   items:string[] |undefined;
-  item:string | undefined
+  item:string | undefined;
+  category:string | undefined
 
   constructor(private service: AppService) {
   }
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit {
 
   clickedItem(value:string){
     // console.log('clickedItem',value);
+    this.category = value;
 
     this.service.countItem(value).subscribe(
       (res) => {

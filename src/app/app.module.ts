@@ -17,7 +17,8 @@ import { HeaderComponent } from './header/header.component';
 import { SingleComponent } from './single/single.component';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MultipleComponent } from './multiple/multiple.component';
-import { MatStockTableComponent } from './mat-stock-table/mat-stock-table.component';
+import { StockTableMatComponent } from './stock-table-mat/stock-table-mat.component';
+import { StockGraphComponent } from './stock-graph/stock-graph.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MatStockTableComponent } from './mat-stock-table/mat-stock-table.compon
     HeaderComponent,
     SingleComponent,
     MultipleComponent,
-    MatStockTableComponent
+    StockTableMatComponent,
+    StockGraphComponent
   ],
   imports: [
     BrowserAnimationsModule,
