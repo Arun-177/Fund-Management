@@ -12,9 +12,9 @@ export class SingleService {
 
 
     
-    getData(data:string): Observable<any> {
+    getData(data:string,startDate:Number,endDate:Number): Observable<any> {
         const options = new HttpHeaders({ 'Content-Type': 'application/json' });
-        return this.http.post<any>('http://localhost:3000/getData',{value:data}).pipe(
+        return this.http.post<any>('http://localhost:3000/getData',{value:data,'startDate':startDate,'endDate':endDate}).pipe(
       );
   }
   
