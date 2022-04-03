@@ -5,18 +5,15 @@ import { catchError, tap } from 'rxjs/operators';
 @Injectable({
     providedIn:'root'
 })
-
-export class SingleService {
-
-    constructor(private http: HttpClient) { }
-
-
-    
-    getData(data:string,startDate:Number,endDate:Number): Observable<any> {
-        const options = new HttpHeaders({ 'Content-Type': 'application/json' });
-        return this.http.post<any>('http://localhost:3000/getData',{value:data,'startDate':startDate,'endDate':endDate}).pipe(
-      );
-  }
+export class AppAddTransaction {
+  constructor(private http: HttpClient) { }
   
 
+    insertData(data:any): Observable<any> {
+        // data = data.toLowerCase().replace(/\s/g, "");
+        const options = new HttpHeaders({ 'Content-Type': 'application/json' });
+        return this.http.post<any>('http://localhost:3000/insertData',{value:data}).pipe(
+        //   tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data)))
+      );
+  }
 }

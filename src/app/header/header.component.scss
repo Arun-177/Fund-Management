@@ -1,10 +1,17 @@
 .header{
     // width: 700px;
     display: flex;
-    align-items: center;
-    flex-direction: column;
+    // align-items: center;
+    // flex-direction: column;
     margin: auto;
     // border: 1px solid black;
     font-size: 24px;
+    // align-items: space-between;
+    justify-content: space-between;
+    flex-wrap: nowrap;
 }
 
+.add-transaction{
+    cursor: pointer;
+    font-size: 20px;
+}

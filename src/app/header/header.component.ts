@@ -1,5 +1,5 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { HeaderService } from './header.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { HeaderService } from './header.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  @Output() addTransaction = new EventEmitter<string>()
 
   lastLoggedInTime:any = undefined;
   constructor(private service: HeaderService) {
@@ -33,6 +34,12 @@ export class HeaderComponent implements OnInit {
       (err) => {
         this.lastLoggedInTime=err.message
       });
+  }
+
+  sentData(data:string){
+    console.log('event emitted')
+    this.addTransaction.emit(data);
+
   }
 
 

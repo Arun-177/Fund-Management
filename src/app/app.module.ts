@@ -20,6 +20,7 @@ import { MultipleComponent } from './multiple/multiple.component';
 import { StockTableMatComponent } from './stock-table-mat/stock-table-mat.component';
 import { StockGraphComponent } from './stock-graph/stock-graph.component';
 import { BankTableMatComponent } from './bank-table-mat/bank-table-mat.component';
+import { AddTransactionComponent } from './add-transaction/add-transaction.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { BankTableMatComponent } from './bank-table-mat/bank-table-mat.component
     MultipleComponent,
     StockTableMatComponent,
     StockGraphComponent,
-    BankTableMatComponent
+    BankTableMatComponent,
+    AddTransactionComponent
   ],
   imports: [
     BrowserAnimationsModule,
