@@ -10,7 +10,13 @@ import { Color, Label  } from 'ng2-charts';
   styleUrls: ['./stock-graph.component.scss']
 })
 export class StockGraphComponent implements OnInit, OnChanges {
-    @Input() graphData:any;
+  data:any
+   
+  @Input() set graphData(value:any){
+
+    this.data = value;
+
+    }
 
 
 
@@ -52,13 +58,13 @@ export class StockGraphComponent implements OnInit, OnChanges {
     changeDateFormat(timestamp:number){
     const date = new Date(timestamp);
     const month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
-    if(date.getHours() !=0 || date.getMinutes() !=0 || date.getSeconds() !=0){
-      return ((date.getDate() < 10) ? '0' : '') + date.getDate() + ' ' + month[date.getMonth()] + ', ' + date.getFullYear() + ' at ' +
-      ((date.getHours() < 10) ? '0' : '') + date.getHours() + ':' + 
-      ((date.getMinutes() < 10) ? '0' : '') + date.getMinutes() + ':' + 
-      ((date.getSeconds() < 10) ? '0' : '') + date.getSeconds()
-    }
-    return ((date.getDate() < 10) ? '0' : '') + date.getDate() + ' ' + month[date.getMonth()] + ', ' + date.getFullYear();
+    // if(date.getHours() !=0 || date.getMinutes() !=0 || date.getSeconds() !=0){
+    //   return ((date.getDate() < 10) ? '0' : '') + date.getDate() + ' ' + month[date.getMonth()] + ', ' + date.getFullYear() + ' at ' +
+    //   ((date.getHours() < 10) ? '0' : '') + date.getHours() + ':' + 
+    //   ((date.getMinutes() < 10) ? '0' : '') + date.getMinutes() + ':' + 
+    //   ((date.getSeconds() < 10) ? '0' : '') + date.getSeconds()
+    // }
+    return+ date.getDate() + ' ' + month[date.getMonth()] + ', ' + date.getFullYear();
 
   }
 
@@ -69,8 +75,8 @@ export class StockGraphComponent implements OnInit, OnChanges {
   }
 
   modifyData(){
-    // console.log('this.graphData - ',this.graphData)
-    if(this.graphData){
+    // console.log('this.data - ',this.data)
+    if(this.data){
       const todayDate = new Date();
       const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
       this.lineChartLabels=[];
@@ -86,7 +92,7 @@ export class StockGraphComponent implements OnInit, OnChanges {
         this.lineChartLabels.push(i+ ' ' + month[todayDate.getMonth()])
       }
       let tmp:any;
-      this.graphData.forEach((element:any)=>{
+      this.data.forEach((element:any)=>{
       tmp = this.changeDateFormat(element.date);
       if(element.creditdebit=='credit'){
         this!.lineChartData[1]!.data![this.lineChartLabels.indexOf(tmp.slice(0,tmp.indexOf(',')))]+=element.amount;

@@ -1,0 +1,156 @@
+<p>add-transaction works!</p>
+
+<div class="header">
+    <div class="change-cursor" (click)="openForm('stock')">Stock</div>
+    <div class="change-cursor" (click)="openForm('account')">Account</div>
+</div>
+<div *ngIf="isStock" class="form-stock">
+<form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
+    <div class="form-outer-flex">
+        <div class="form-flex">
+            <div>
+                <label for="first-name">Date </label>
+            </div>
+            <div>
+                <input id="first-name" type="date" formControlName="date" required>
+            </div>
+        </div>
+
+        <div class="form-flex">
+            <div>
+                <label for="last-name">Name </label>
+            </div>
+            <div>
+                <input id="last-name" type="text" formControlName="name">
+            </div>
+        </div>
+
+        <div class="form-flex">
+            <div>
+                <label for="last-name">Quantity </label>
+            </div>
+            <div>
+                <input id="last-name" type="text" formControlName="quantity">
+            </div>
+        </div>
+
+        <div class="form-flex">
+            <div>
+                <label for="last-name">Price </label>
+            </div>
+            <div>
+                <input id="last-name" type="text" formControlName="price">
+            </div>
+        </div>
+
+        <div class="form-flex">
+            <div>
+                <label for="last-name">Amount </label>
+            </div>
+            <!-- <div>
+                <input id="last-name" type="text" formControlName="amount">
+            </div> -->
+            {{stockForm.value.quantity * stockForm.value.price}}
+        </div>
+
+        <div class="form-flex">
+            <div>
+                <label for="last-name">Credit / Debit </label>
+            </div>
+            <div>
+                <select id="last-name"  formControlName="creditdebit">
+                    <option value="credit">Credit</option>
+                    <option value="debit">Debit</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-flex">
+            <div>
+                <label for="last-name">Comment </label>
+            </div>
+            <div>
+                <input id="last-name" type="text" formControlName="comment">
+            </div>
+        </div>
+    
+        <button type="submit" [disabled]="!stockForm.valid">Submit</button>
+
+    </div>
+
+  <!-- <p>Complete the form to enable button.</p> -->
+</form>
+
+<!-- <hr> -->
+
+<!-- <p>Form Value: {{ stockForm.value | json }}</p> -->
+<!-- <p>Form Status: {{ stockForm.status }}</p> -->
+
+</div>
+
+
+
+<div *ngIf="isAccount" class="form-stock">
+<form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+    <div class="form-outer-flex">
+        <div class="form-flex">
+            <div>
+                <label for="first-name">Date </label>
+            </div>
+            <div>
+                <input id="first-name" type="date" formControlName="date" required>
+            </div>
+        </div>
+
+        <div class="form-flex">
+            <div>
+                <label for="last-name">Name </label>
+            </div>
+            <div>
+                <input id="last-name" type="text" formControlName="name">
+            </div>
+        </div>
+
+        <div class="form-flex">
+            <div>
+                <label for="last-name">Amount </label>
+            </div>
+            <div>
+                <input id="last-name" type="text" formControlName="amount">
+            </div>
+        </div>
+
+        <div class="form-flex">
+            <div>
+                <label for="last-name">Credit / Debit </label>
+            </div>
+            <div>
+                <select id="last-name"  formControlName="creditdebit">
+                    <option value="credit">Credit</option>
+                    <option value="debit">Debit</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-flex">
+            <div>
+                <label for="last-name">Comment </label>
+            </div>
+            <div>
+                <input id="last-name" type="text" formControlName="comment">
+            </div>
+        </div>
+    
+        <button type="submit" [disabled]="!accountForm.valid">Submit</button>
+
+    </div>
+
+  <!-- <p>Complete the form to enable button.</p> -->
+</form>
+
+<!-- <hr> -->
+
+<!-- <p>Form Value: {{ accountForm.value | json }}</p> -->
+<!-- <p>Form Status: {{ accountForm.status }}</p> -->
+
+</div>

@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   dropDownList:string[] | undefined;
   isSingle:boolean = false;
   isMultiple:boolean = false;
+  isAddTransaction:boolean = false;
   items:string[] |undefined;
   item:string | undefined;
   category:string | undefined
@@ -24,8 +25,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.getDropDownItem();
   }
+  
 
   clickedItem(value:string){
+    this.isAddTransaction = false;
     // console.log('clickedItem',value);
     this.category = value;
 
@@ -81,4 +84,12 @@ export class AppComponent implements OnInit {
       });
 
   };
+
+
+  addTransactionEvent(event:any){
+    this.isAddTransaction = true;
+    this.isSingle = false;
+    this.isMultiple = false;
+    console.log('event received ',event)
+  }
 }

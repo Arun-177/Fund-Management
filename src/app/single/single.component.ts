@@ -39,8 +39,9 @@ export class SingleComponent implements OnInit {
     getData(){
       this.loadingTable = true;
       const dt = new Date();
-      const startDate = Number(new Date(dt.getFullYear(),dt.getMonth()))*1000+1;
-      const endDate = Number(new Date(dt.getFullYear(),dt.getMonth()+1))*1000-1;      
+      const startDate = Number(new Date(dt.getFullYear(),dt.getMonth()))+1;
+      // const startDate =0;
+      const endDate = Number(new Date(dt.getFullYear(),dt.getMonth()+1))-1;      
       // console.log(startDate,endDate)
       this.service.getData(this.item,startDate,endDate).subscribe(
         (res) => {
