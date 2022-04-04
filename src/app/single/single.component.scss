@@ -1,6 +1,30 @@
+.body{
+  margin: 10px auto;
+  // padding: auto 10px;
+  border: black 1px solid;
+
+  .header{
+    margin: 16px 0px;
+    font-size: 18px;
+    display: flex;
+    // flex-direction: column;
+    justify-content: space-around;
+  }
+  .change-cursor{
+    cursor: pointer;
+  }
+  .font-color-red{
+    color: red;
+  }
+  .width-100{
+    width: 100%;
+  }
+}
+
+
 .content{
   border: black 1px solid;
-  margin: auto;
+  margin: 0px 10px;
   display: flex;
   align-content: space-between;
   flex-wrap: wrap;

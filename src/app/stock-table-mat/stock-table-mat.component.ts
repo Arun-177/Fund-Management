@@ -29,15 +29,20 @@ export class StockTableMatComponent implements OnInit,AfterViewInit {
   ngAfterViewInit() {
     console.log(this.data)
     this.data.forEach((element:any)=>{
-      element.date = element.date1 + this.changeDateFormat(element.date).slice(2)
-      
+      element.date1 = Number(((this.getDate(element.date) < 10) ? '0' : '') + this.getDate(element.date));
+      if(!Number.isNaN(element.date1)){
+        element.date = element.date1 + this.changeDateFormat(element.date).slice(2)
+      }
     })
     this.dataSource = new MatTableDataSource(this.data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  changeDateFormat(timestamp:number){
+  changeDateFormat(timestamp:any){
+    if(String(Number(timestamp))!=timestamp){
+      return timestamp
+    }
     const date = new Date(timestamp);
     const month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
     if(date.getHours() !=0 || date.getMinutes() !=0 || date.getSeconds() !=0){

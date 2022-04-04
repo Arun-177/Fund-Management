@@ -1,12 +1,27 @@
-<div class="content">
+<div class="body">
+  <div class="header">
 
-  <div *ngIf="!loadingTable && data.length>0" class="table">
+    <div *ngIf="showContent" class="change-cursor" (click)="AddTransactionClicked()">Add Transaction</div>
+    <div *ngIf="!showContent" class="change-cursor font-color-red" (click)="AddTransactionClicked()">Cancel</div>
+    <div class="change-cursor">Header Line</div>
+    <div class="change-cursor">Header Line</div>
+  </div>
+
+<div class="content">
+  <div *ngIf="showContent && !loadingTable && data.length>0" class="table">
     <app-stock-table-mat *ngIf="category != 'Accounts'" [data]="data"></app-stock-table-mat>
     <app-bank-table-mat *ngIf="category == 'Accounts'" [data]="data"></app-bank-table-mat>
   </div>
   
-  <div class="chart">
+  <div *ngIf="showContent" class="chart">
     <app-stock-graph [graphData]="data"></app-stock-graph>
   </div>
+
+  <div *ngIf="!showContent" class="width-100">
+    <app-add-transaction [showSelectionOption]="false" [isAccount]="true" [isStock]="false"></app-add-transaction>
+  </div>
+
+
+</div>
 
 </div>

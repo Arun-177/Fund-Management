@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { dateInputsHaveChanged } from '@angular/material/datepicker/datepicker-input-base';
@@ -10,9 +10,13 @@ import {AppAddTransaction} from './add-transaction.service'
   styleUrls: ['./add-transaction.component.scss']
 })
 export class AddTransactionComponent implements OnInit {
+  @Input() showSelectionOption: boolean | true; 
+  @Input() isAccount: boolean | false; 
+  @Input() isStock: boolean | false;
+
   amount:Number = 0;
-  isStock:boolean = false;
-  isAccount:boolean = false;
+  // isStock:boolean = false;
+  // isAccount:boolean = false;
   constructor(private fb: FormBuilder,private service:AppAddTransaction) { }
   ngOnInit(): void {
   }
@@ -28,7 +32,7 @@ export class AddTransactionComponent implements OnInit {
 
     accountForm = this.fb.group({
     date: [new Date(), Validators.required],
-    name: ['', Validators.required],
+    platform: ['', Validators.required],
     amount: ['', Validators.required],
     creditdebit: ['', Validators.required],
     comment: ['', Validators.required],
@@ -91,8 +95,7 @@ export class AddTransactionComponent implements OnInit {
     } else{
       return {
         date : Number(new Date(this.accountForm.value.date)),
-        platform: 'Paytm',
-        name : this.accountForm.value.name,
+        platform : this.accountForm.value.name,
         amount : this.accountForm.value.amount,
         creditdebit : this.accountForm.value.creditdebit,
         comment : this.accountForm.value.comment,

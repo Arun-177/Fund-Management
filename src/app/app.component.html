@@ -12,6 +12,17 @@
 
 <app-single *ngIf="isSingle" [item]="item"  [category]="category"></app-single>
 <app-multiple *ngIf="isMultiple" [items]="items" [category]="category"></app-multiple>
-<app-add-transaction *ngIf="isAddTransaction"></app-add-transaction>
+<app-add-transaction *ngIf="isAddTransaction" [showSelectionOption]="true" [isAccount]="false" [isStock]="false"></app-add-transaction>
+
+
+<div *ngIf="!loadingTable && !isSingle && !isMultiple && !isAddTransaction" class="content">
+    <div class="item-1">
+        <h3>Total Earnings - {{totalEarning}}</h3>
+        <h3>Total Spendings - {{totalSpending}}</h3>
+    </div>
+    <app-stock-graph class="chart" [graphData]="data"></app-stock-graph>
+
+</div>
+
 
 <!-- <mat-slider thumbLabel tickInterval="5" min="1" max="100" step="1" value="50" style="width: 600px;"></mat-slider> -->

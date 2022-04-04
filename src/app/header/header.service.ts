@@ -14,9 +14,4 @@ export class HeaderService {
       );
   }
 
-  getDropDownItem(): Observable<any> {
-    return this.http.get<any>('http://localhost:3000/getDropDownItem').pipe(
-    //   tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data)))
-      );
-  }
 }

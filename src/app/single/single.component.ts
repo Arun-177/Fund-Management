@@ -12,8 +12,10 @@ export class SingleComponent implements OnInit {
   @Input() item:any;
   @Input() category:any;
   oldItem:string | undefined;
+  showContent:boolean = true;
 
   data:any;
+  datacopy:any; //one bug here
   loadingTable:boolean = false
 
   constructor(private service: SingleService) { }
@@ -24,11 +26,8 @@ export class SingleComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    // console.log(changes);
     if(!changes.firstChange && this.oldItem != this.item){
-      // setTimeout(()=>{
-      //   this.getData();
-      // },10)
+      
       this.getData();
       this.oldItem = this.item;
     }
@@ -37,6 +36,7 @@ export class SingleComponent implements OnInit {
 
   
     getData(){
+      console.log('single.component.ts getData() called')
       this.loadingTable = true;
       const dt = new Date();
       const startDate = Number(new Date(dt.getFullYear(),dt.getMonth()))+1;
@@ -47,6 +47,7 @@ export class SingleComponent implements OnInit {
         (res) => {
           if(res.status=='success'){          
             this.data = res.message
+            this.datacopy = res.message
             console.log('data updated in single.compoent.ts - ',this.data)
             this.loadingTable = false;
           }
@@ -60,4 +61,9 @@ export class SingleComponent implements OnInit {
         });
 
   };
+
+
+  AddTransactionClicked(){
+    this.showContent ? this.showContent = false : this.showContent = true;
+  }
 }

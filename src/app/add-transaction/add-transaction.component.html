@@ -1,6 +1,6 @@
 <p>add-transaction works!</p>
 
-<div class="header">
+<div *ngIf="showSelectionOption" class="header">
     <div class="change-cursor" (click)="openForm('stock')">Stock</div>
     <div class="change-cursor" (click)="openForm('account')">Account</div>
 </div>
@@ -104,10 +104,13 @@
 
         <div class="form-flex">
             <div>
-                <label for="last-name">Name </label>
+                <label for="last-name">Platform </label>
             </div>
             <div>
-                <input id="last-name" type="text" formControlName="name">
+                <select id="last-name" formControlName="platform">
+                    <option value="ICICI" selected>ICICI</option>
+                    <option value="Paytm">Paytm</option>
+                </select>
             </div>
         </div>
 

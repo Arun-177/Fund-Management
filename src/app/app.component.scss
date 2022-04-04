@@ -24,3 +24,22 @@
 .change-font-color-on-click{
     color:blue;
 }
+
+
+.content{
+  border: black 1px solid;
+  margin: auto;
+  display: flex;
+  align-content: space-between;
+  flex-wrap: wrap;
+  .item-1{
+    margin-left: 20px;
+    width:700px; 
+  }
+
+  .chart{
+    display: block; 
+    width:400px; 
+    margin: auto;
+  }
+}
