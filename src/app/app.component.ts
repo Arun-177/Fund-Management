@@ -110,7 +110,7 @@ export class AppComponent implements OnInit {
           this.data = res.message
           console.log('data updated in single.compoent.ts - ',this.data)
           this.data.forEach((element:any)=>{
-            element.creditdebit=='credit' ? this.totalEarning+=element.amount :this.totalSpending+=element.amount
+            (element.creditdebit=='credit' || element.creditdebit=='sell') ? this.totalEarning+=element.amount :this.totalSpending+=element.amount
           })
           this.loadingTable = false;
         }

@@ -24,6 +24,7 @@ export class AddTransactionComponent implements OnInit {
    stockForm = this.fb.group({
     date: [new Date(), Validators.required],
     name: ['', Validators.required],
+    platform: ['', Validators.required],
     quantity: ['', Validators.required],
     price: ['', Validators.required],
     creditdebit: ['', Validators.required],
@@ -85,6 +86,7 @@ export class AddTransactionComponent implements OnInit {
     if(this.isStock){
       return {
         date : Number(new Date(this.stockForm.value.date)),
+        platform : this.stockForm.value.platform,
         name : this.stockForm.value.name,
         quantity : this.stockForm.value.quantity,
         price : this.stockForm.value.price,
@@ -95,7 +97,7 @@ export class AddTransactionComponent implements OnInit {
     } else{
       return {
         date : Number(new Date(this.accountForm.value.date)),
-        platform : this.accountForm.value.name,
+        platform : this.accountForm.value.platform,
         amount : this.accountForm.value.amount,
         creditdebit : this.accountForm.value.creditdebit,
         comment : this.accountForm.value.comment,

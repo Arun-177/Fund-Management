@@ -18,6 +18,16 @@
 
         <div class="form-flex">
             <div>
+                <label for="first-name">Platform </label>
+            </div>
+                <select id="last-name"  formControlName="platform">
+                    <option value="groww">GROWW</option>
+                    <option value="kite">Kite</option>
+                </select>
+        </div>
+
+        <div class="form-flex">
+            <div>
                 <label for="last-name">Name </label>
             </div>
             <div>
@@ -55,10 +65,12 @@
 
         <div class="form-flex">
             <div>
-                <label for="last-name">Credit / Debit </label>
+                <label for="last-name">Buy / Sell </label>
             </div>
             <div>
                 <select id="last-name"  formControlName="creditdebit">
+                    <option value="buy">Buy</option>
+                    <option value="sell">Sell</option>
                     <option value="credit">Credit</option>
                     <option value="debit">Debit</option>
                 </select>
@@ -108,8 +120,11 @@
             </div>
             <div>
                 <select id="last-name" formControlName="platform">
-                    <option value="ICICI" selected>ICICI</option>
-                    <option value="Paytm">Paytm</option>
+                    <option value="icici" selected>ICICI</option>
+                    <option value="paytm">Paytm</option>
+                    <option value="mmt">MMT</option>
+                    <option value="hpcl">HPCL</option>
+                    <option value="platinum">Platinum</option>
                 </select>
             </div>
         </div>

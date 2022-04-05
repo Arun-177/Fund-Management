@@ -9,8 +9,8 @@
 
 <div class="content">
   <div *ngIf="showContent && !loadingTable && data.length>0" class="table">
-    <app-stock-table-mat *ngIf="category != 'Accounts'" [data]="data"></app-stock-table-mat>
-    <app-bank-table-mat *ngIf="category == 'Accounts'" [data]="data"></app-bank-table-mat>
+    <app-stock-table-mat *ngIf="category != 'accounts'" [data]="data"></app-stock-table-mat>
+    <app-bank-table-mat *ngIf="category == 'accounts'" [data]="data"></app-bank-table-mat>
   </div>
   
   <div *ngIf="showContent" class="chart">
