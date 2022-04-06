@@ -28,4 +28,14 @@ export class UtilityService{
         return ((date.getDate() < 10) ? '0' : '') + date.getDate() + ' ' + month[date.getMonth()] + ', ' + date.getFullYear();
     }
 
+        changeDateFormatForHomePageGraph(timestamp:any){
+        if(String(Number(timestamp))!=timestamp){
+            return timestamp;
+        }
+        const date = new Date(timestamp);
+        const month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+        
+        return date.getDate() + ' ' + month[date.getMonth()] + ', ' + date.getFullYear();
+    }
+
 }

@@ -76,7 +76,7 @@ export class StockGraphComponent implements OnInit, OnChanges {
       }
       let tmp:any;
       this.data.forEach((element:any)=>{
-      tmp = this.uService.changeDateFormat(element.date);
+      tmp = this.uService.changeDateFormatForHomePageGraph(element.date);
       if(element.creditdebit=='credit' || element.creditdebit=='sell'){
         this!.lineChartData[1]!.data![this.lineChartLabels.indexOf(tmp.slice(0,tmp.indexOf(',')))]+=element.amount;
       }else{
