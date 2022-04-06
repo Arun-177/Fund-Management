@@ -110,8 +110,10 @@ export class AppComponent implements OnInit {
           this.data = res.message
           console.log('data updated in single.compoent.ts - ',this.data)
           this.data.forEach((element:any)=>{
-            (element.creditdebit=='credit' || element.creditdebit=='sell') ? this.totalEarning+=element.amount :this.totalSpending+=element.amount
+            (element.creditdebit=='credit' || element.creditdebit=='sell') ? this.totalEarning+=element.amount : this.totalSpending+=element.amount
           })
+          this.totalEarning = Math.round(Number(this.totalEarning)*100)/100
+          this.totalSpending = Math.round(Number(this.totalSpending)*100)/100
           this.loadingTable = false;
         }
         else{

@@ -98,7 +98,7 @@ export class AddTransactionComponent implements OnInit {
       return {
         date : Number(new Date(this.accountForm.value.date)),
         platform : this.accountForm.value.platform,
-        amount : this.accountForm.value.amount,
+        amount : Math.round(Number(this.accountForm.value.amount)*100)/100,
         creditdebit : this.accountForm.value.creditdebit,
         comment : this.accountForm.value.comment,
       }
