@@ -18,7 +18,7 @@
   </div>
 
   <div *ngIf="!showContent" class="width-100">
-    <app-add-transaction [showSelectionOption]="false" [isAccount]="true" [isStock]="false"></app-add-transaction>
+    <app-add-transaction [showSelectionOption]="false"  [isAccount]="category=='accounts'?true:false" [isStock]="category=='accounts'?false:true"></app-add-transaction>
   </div>
 
 
