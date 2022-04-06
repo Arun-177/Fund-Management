@@ -9,8 +9,8 @@
 
 <div class="content">
   <div *ngIf="showContent && !loadingTable && data.length>0" class="table">
-    <app-stock-table-mat *ngIf="category != 'accounts'" [data]="data"></app-stock-table-mat>
-    <app-bank-table-mat *ngIf="category == 'accounts'" [data]="data"></app-bank-table-mat>
+    <app-stock-table-mat *ngIf="(category=='groww' || category=='kite')" [data]="data"></app-stock-table-mat>
+    <app-bank-table-mat *ngIf="(category!='groww' && category!='kite')" [data]="data"></app-bank-table-mat>
   </div>
   
   <div *ngIf="showContent" class="chart">
@@ -18,7 +18,11 @@
   </div>
 
   <div *ngIf="!showContent" class="width-100">
-    <app-add-transaction [showSelectionOption]="false"  [isAccount]="category=='accounts'?true:false" [isStock]="category=='accounts'?false:true"></app-add-transaction>
+    <app-add-transaction 
+      [showSelectionOption]="false"  
+      [isAccount]="(category!='groww' && category!='kite') ? true : false" 
+      [isStock]="(category=='groww' || category=='kite') ? true:false">
+    </app-add-transaction>
   </div>
 
 
