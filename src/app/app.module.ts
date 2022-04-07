@@ -17,9 +17,9 @@ import { HeaderComponent } from './header/header.component';
 import { SingleComponent } from './single/single.component';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MultipleComponent } from './multiple/multiple.component';
-import { StockTableMatComponent } from './stock-table-mat/stock-table-mat.component';
+import { StockTableMatComponent } from './Tables/stock-table-mat/stock-table-mat.component';
 import { StockGraphComponent } from './stock-graph/stock-graph.component';
-import { BankTableMatComponent } from './bank-table-mat/bank-table-mat.component';
+import { BankTableMatComponent } from './Tables/bank-table-mat/bank-table-mat.component';
 import { AddTransactionComponent } from './add-transaction/add-transaction.component';
 import { HomeScreenTableMatComponent } from './Tables/home-screen-table-mat/home-screen-table-mat.component';
 
