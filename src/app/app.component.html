@@ -1,13 +1,18 @@
 <app-header (addTransaction)="addTransactionEvent($event)"></app-header>
 
 <div class="options" >
-    <!-- Select an Option
-    <select name="cars" id="cars">
-    <option *ngFor="let tmp of dropDownList" [value]="tmp">{{tmp}}</option>
 
-    <option value="audi">Audi</option> -->
-    <!-- </select> -->
-    <div class="list-header" *ngFor="let tmp of dropDownList" (click)="clickedItem(tmp)" [ngClass]="{'change-font-color-on-click': (item==tmp && items==undefined)}">{{tmp}}</div>
+    <div class="list-header" 
+        *ngFor="let tmp of dropDownList" 
+        (click)="clickedItem(tmp)" 
+        [ngClass]="{'change-font-color-on-click': (item==tmp && items==undefined)}">
+        <span *ngIf="tmp=='mmt' || tmp=='hpcl'">
+            {{tmp | uppercase}}
+        </span>
+        <span *ngIf="tmp!='mmt' && tmp!='hpcl'">
+            {{tmp | titlecase}}
+        </span>
+    </div>
 </div>
 
 <app-single *ngIf="isSingle" [item]="item"  [category]="category"></app-single>
