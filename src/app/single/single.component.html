@@ -1,10 +1,20 @@
 <div class="body">
-  <div class="header">
-
+  
+  <div *ngIf="!filtersClick" class="header">
     <div *ngIf="showContent" class="change-cursor" (click)="AddTransactionClicked()">Add Transaction</div>
-    <div *ngIf="!showContent" class="change-cursor font-color-red" (click)="AddTransactionClicked()">Cancel</div>
-    <div class="change-cursor">Filters</div>
+    <div *ngIf="addTranscationClick" class="change-cursor font-color-red" (click)="AddTransactionClicked()">Cancel</div>
+    <div class="change-cursor" (click)="filtersClicked()">Filters</div>
     <div class="change-cursor">Doc's</div>
+  </div>
+
+  <div *ngIf="filtersClick" class="header">
+    <div *ngIf="filtersClick && !updateDateClick" class="change-cursor font-color-red" (click)="filtersClicked()">Cancel</div>
+
+    <div *ngIf="updateDateClick" class="change-cursor font-color-red" (click)="updateDateClicked()">Cancel</div>
+    <div *ngIf="!updateDateClick" class="change-cursor" (click)="updateDateClicked()">Update Date</div>
+    <div *ngIf="updateDateClick">Start Date - <input [formControl]="startDate" type="date" id="date-object" /></div>
+    <div *ngIf="updateDateClick">End Date - <input [formControl]="endDate" type="date" id="date-object" /></div>
+    <div *ngIf="updateDateClick" class="change-cursor" (click)="getData(startDate.value,endDate.value)">Submit</div>
   </div>
 
 <div class="content">
