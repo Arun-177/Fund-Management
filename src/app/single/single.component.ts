@@ -16,14 +16,20 @@ export class SingleComponent implements OnInit {
   addTranscationClick:boolean = false;
   filtersClick:boolean = false;
   updateDateClick:boolean = false;
+  docsClick:boolean = false;
+  analyticsClick:boolean = false;
+  docsData:any | undefined;
   showContent:boolean = true;
 
   data:any;
   datacopy:any; //one bug here
   loadingTable:boolean = false
+  totalSpending:number =0;
+  totalEarning:number =0;
 
   startDate = new FormControl(new Date());
   endDate = new FormControl(new Date());
+  docsText = new FormControl();
 
 
   constructor(private service: SingleService) { }
@@ -60,6 +66,9 @@ export class SingleComponent implements OnInit {
         if(res.status=='success'){          
           this.data = res.message
           this.datacopy = res.message
+          this.data.forEach((element:any)=>{
+            (element.creditdebit=='credit' || element.creditdebit=='sell') ? this.totalEarning+=element.amount : this.totalSpending+=element.amount
+          })
           console.log('data updated in single.compoent.ts - ',this.data)
           this.loadingTable = false;
         }
@@ -83,8 +92,37 @@ export class SingleComponent implements OnInit {
     this.filtersClick ? this.filtersClick = false : this.filtersClick = true;
   }
 
+  analyticsClicked(){
+    this.analyticsClick ? this.analyticsClick = false : this.analyticsClick = true;
+    this.showContent ? this.showContent = false : this.showContent = true;
+
+
+  }
+
   updateDateClicked(){
     this.updateDateClick ? this.updateDateClick = false : this.updateDateClick = true;
+  }
+  docsClicked(){
+    this.docsClick ? this.docsClick = false : this.docsClick = true;
+
+  }
+  docsSubmit(key:any){
+    console.log('in docsSubmit - ',key)
+
+    
+    this.service.getDocsData(key,this.category,this.item).subscribe(
+      (res) => {
+        if(res.status=='success'){          
+          this.docsData = res.message;
+        }
+        else{
+          this.docsData = undefined
+        }
+      },
+      (err) => {
+        this.docsData=undefined;
+      });
+
   }
 
 }

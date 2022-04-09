@@ -1,20 +1,40 @@
 <div class="body">
   
-  <div *ngIf="!filtersClick" class="header">
-    <div *ngIf="showContent" class="change-cursor" (click)="AddTransactionClicked()">Add Transaction</div>
+  <div *ngIf="!filtersClick && !docsClick" class="header">
+    <div *ngIf="!addTranscationClick" class="change-cursor" (click)="AddTransactionClicked()">Add Transaction</div>
     <div *ngIf="addTranscationClick" class="change-cursor font-color-red" (click)="AddTransactionClicked()">Cancel</div>
+    
     <div class="change-cursor" (click)="filtersClicked()">Filters</div>
-    <div class="change-cursor">Doc's</div>
+
+    <div *ngIf="!analyticsClick" class="change-cursor" (click)="analyticsClicked()">Analytics</div>
+    <div *ngIf="analyticsClick" class="change-cursor font-color-red" (click)="analyticsClicked()">Cancel</div>
+    
+    <div class="change-cursor" (click)="docsClicked()">Doc's</div>
   </div>
 
-  <div *ngIf="filtersClick" class="header">
+  <div *ngIf="filtersClick && !docsClick" class="header">
     <div *ngIf="filtersClick && !updateDateClick" class="change-cursor font-color-red" (click)="filtersClicked()">Cancel</div>
 
-    <div *ngIf="updateDateClick" class="change-cursor font-color-red" (click)="updateDateClicked()">Cancel</div>
-    <div *ngIf="!updateDateClick" class="change-cursor" (click)="updateDateClicked()">Update Date</div>
+    <div *ngIf="!analyticsClick && updateDateClick" class="change-cursor font-color-red" (click)="updateDateClicked()">Cancel</div>
+    <div *ngIf="!analyticsClick && !updateDateClick" class="change-cursor" (click)="updateDateClicked()">Update Date</div>
     <div *ngIf="updateDateClick">Start Date - <input [formControl]="startDate" type="date" id="date-object" /></div>
     <div *ngIf="updateDateClick">End Date - <input [formControl]="endDate" type="date" id="date-object" /></div>
     <div *ngIf="updateDateClick" class="change-cursor" (click)="getData(startDate.value,endDate.value)">Submit</div>
+
+  </div>
+
+  <div *ngIf="!filtersClick && docsClick" class="header">
+    <div class="change-cursor font-color-red" (click)="docsClicked()">Cancel</div>
+    <div>Key - <input [formControl]="docsText" type="text" /></div>
+    <div class="change-cursor" (click)="docsSubmit(docsText.value)">Submit</div>
+
+
+  </div>
+
+  <div class="item-1">
+    <h3>Total Earnings - {{totalEarning | number:'.2-2' }}</h3>
+    <h3>Total Spendings - {{totalSpending | number:'.2-2' }}</h3>
+    <!-- <h3 *ngIf="category=='accounts'">Balance - {{totalEarning - totalSpending | number:'.2-2' }}</h3> -->
   </div>
 
 <div class="content">
@@ -27,12 +47,16 @@
     <app-stock-graph [graphData]="data"></app-stock-graph>
   </div>
 
-  <div *ngIf="!showContent" class="width-100">
+  <div *ngIf="addTranscationClick" class="width-100">
     <app-add-transaction 
       [showSelectionOption]="false"  
       [isAccount]="(category!='groww' && category!='kite') ? true : false" 
       [isStock]="(category=='groww' || category=='kite') ? true:false">
     </app-add-transaction>
+  </div>
+
+  <div *ngIf="analyticsClick">
+    <app-analytics1></app-analytics1>
   </div>
 
 

@@ -22,6 +22,7 @@ import { StockGraphComponent } from './stock-graph/stock-graph.component';
 import { BankTableMatComponent } from './Tables/bank-table-mat/bank-table-mat.component';
 import { AddTransactionComponent } from './add-transaction/add-transaction.component';
 import { HomeScreenTableMatComponent } from './Tables/home-screen-table-mat/home-screen-table-mat.component';
+import { Analytics1Component } from './Analytics/analytics1/analytics1.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { HomeScreenTableMatComponent } from './Tables/home-screen-table-mat/home
     StockGraphComponent,
     BankTableMatComponent,
     AddTransactionComponent,
-    HomeScreenTableMatComponent
+    HomeScreenTableMatComponent,
+    Analytics1Component
   ],
   imports: [
     BrowserAnimationsModule,
