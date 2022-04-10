@@ -23,6 +23,7 @@ import { BankTableMatComponent } from './Tables/bank-table-mat/bank-table-mat.co
 import { AddTransactionComponent } from './add-transaction/add-transaction.component';
 import { HomeScreenTableMatComponent } from './Tables/home-screen-table-mat/home-screen-table-mat.component';
 import { Analytics1Component } from './Analytics/analytics1/analytics1.component';
+import { DocumentsComponent } from './Documents/documents/documents.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { Analytics1Component } from './Analytics/analytics1/analytics1.component
     BankTableMatComponent,
     AddTransactionComponent,
     HomeScreenTableMatComponent,
-    Analytics1Component
+    Analytics1Component,
+    DocumentsComponent
   ],
   imports: [
     BrowserAnimationsModule,

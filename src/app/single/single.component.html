@@ -15,23 +15,24 @@
   <div *ngIf="filtersClick && !docsClick" class="header">
     <div *ngIf="filtersClick && !updateDateClick" class="change-cursor font-color-red" (click)="filtersClicked()">Cancel</div>
 
-    <div *ngIf="!analyticsClick && updateDateClick" class="change-cursor font-color-red" (click)="updateDateClicked()">Cancel</div>
-    <div *ngIf="!analyticsClick && !updateDateClick" class="change-cursor" (click)="updateDateClicked()">Update Date</div>
+    <div *ngIf="updateDateClick" class="change-cursor font-color-red" (click)="updateDateClicked()">Cancel</div>
+    <div *ngIf="!updateDateClick" class="change-cursor" (click)="updateDateClicked()">Update Date</div>
     <div *ngIf="updateDateClick">Start Date - <input [formControl]="startDate" type="date" id="date-object" /></div>
     <div *ngIf="updateDateClick">End Date - <input [formControl]="endDate" type="date" id="date-object" /></div>
     <div *ngIf="updateDateClick" class="change-cursor" (click)="getData(startDate.value,endDate.value)">Submit</div>
 
   </div>
 
-  <div *ngIf="!filtersClick && docsClick" class="header">
-    <div class="change-cursor font-color-red" (click)="docsClicked()">Cancel</div>
+  <div *ngIf="!filtersClick && docsClick && !showDocs" class="header">
+    <div *ngIf="!showDocs" class="change-cursor font-color-red" (click)="docsClicked()">Cancel</div>
     <div>Key - <input [formControl]="docsText" type="text" /></div>
     <div class="change-cursor" (click)="docsSubmit(docsText.value)">Submit</div>
-
-
+    
+    
   </div>
+  <div *ngIf="!filtersClick && docsClick && showDocs" class="header change-cursor font-color-red" (click)="docsGoBack()">Go Back</div>
 
-  <div class="item-1">
+  <div *ngIf="!showDocs" class="item-1">
     <h3>Total Earnings - {{totalEarning | number:'.2-2' }}</h3>
     <h3>Total Spendings - {{totalSpending | number:'.2-2' }}</h3>
     <!-- <h3 *ngIf="category=='accounts'">Balance - {{totalEarning - totalSpending | number:'.2-2' }}</h3> -->
@@ -57,6 +58,10 @@
 
   <div *ngIf="analyticsClick">
     <app-analytics1></app-analytics1>
+  </div>
+
+  <div *ngIf="showDocs">
+    <app-documents></app-documents>
   </div>
 
 

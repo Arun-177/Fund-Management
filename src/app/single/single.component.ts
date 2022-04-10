@@ -19,6 +19,7 @@ export class SingleComponent implements OnInit {
   docsClick:boolean = false;
   analyticsClick:boolean = false;
   docsData:any | undefined;
+  showDocs:boolean = false;
   showContent:boolean = true;
 
   data:any;
@@ -108,12 +109,12 @@ export class SingleComponent implements OnInit {
   }
   docsSubmit(key:any){
     console.log('in docsSubmit - ',key)
-
-    
     this.service.getDocsData(key,this.category,this.item).subscribe(
       (res) => {
         if(res.status=='success'){          
           this.docsData = res.message;
+          this.showContent = false;
+          this.showDocs = true;
         }
         else{
           this.docsData = undefined
@@ -122,6 +123,12 @@ export class SingleComponent implements OnInit {
       (err) => {
         this.docsData=undefined;
       });
+
+  }
+  docsGoBack(){
+    this.showContent = true;
+    this.showDocs = false;
+    this.docsClick ? this.docsClick = false : this.docsClick = true;
 
   }
 
