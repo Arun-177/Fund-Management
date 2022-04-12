@@ -61,7 +61,7 @@
   </div>
 
   <div *ngIf="showDocs">
-    <app-documents></app-documents>
+    <app-documents [item]="item" [category]="category" [docsData]="docsData.message[0].comment"></app-documents>
   </div>
 
 

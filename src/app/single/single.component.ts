@@ -105,14 +105,15 @@ export class SingleComponent implements OnInit {
   }
   docsClicked(){
     this.docsClick ? this.docsClick = false : this.docsClick = true;
+    this.docsText.setValue('')
 
   }
   docsSubmit(key:any){
     console.log('in docsSubmit - ',key)
     this.service.getDocsData(key,this.category,this.item).subscribe(
       (res) => {
-        if(res.status=='success'){          
-          this.docsData = res.message;
+        if(true){          
+          this.docsData = res;
           this.showContent = false;
           this.showDocs = true;
         }
