@@ -24,6 +24,7 @@ import { AddTransactionComponent } from './add-transaction/add-transaction.compo
 import { HomeScreenTableMatComponent } from './Tables/home-screen-table-mat/home-screen-table-mat.component';
 import { Analytics1Component } from './Analytics/analytics1/analytics1.component';
 import { DocumentsComponent } from './Documents/documents/documents.component';
+import { EncryptionComponent } from './encryption/encryption.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { DocumentsComponent } from './Documents/documents/documents.component';
     AddTransactionComponent,
     HomeScreenTableMatComponent,
     Analytics1Component,
-    DocumentsComponent
+    DocumentsComponent,
+    EncryptionComponent
   ],
   imports: [
     BrowserAnimationsModule,

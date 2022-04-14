@@ -26,6 +26,9 @@ export class DocumentsComponent implements OnInit {
   }
 
   updateDocsData(){
+    if(!this.docsData){
+      this.docsData={}
+    }
     console.log(this.docsData)
     console.log(this.registerForm.value)
     this.docsData[this.registerForm.value.key] = this.registerForm.value.value
