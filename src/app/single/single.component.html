@@ -33,8 +33,16 @@
   <div *ngIf="!filtersClick && docsClick && showDocs" class="header change-cursor font-color-red" (click)="docsGoBack()">Go Back</div>
 
   <div *ngIf="!showDocs" class="item-1">
-    <h3>Total Earnings - {{totalEarning | number:'.2-2' }}</h3>
-    <h3>Total Spendings - {{totalSpending | number:'.2-2' }}</h3>
+    <h3>
+      <span *ngIf="(item=='icici' || item=='paytm');else universalText">Total Credits</span>
+      <ng-template #universalText>Total Earnings</ng-template>
+      - {{totalEarning | number:'.2-2' }}
+    </h3>
+    <h3>
+      <span *ngIf="(item=='icici' || item=='paytm');else universalText2">Total Debits</span>
+      <ng-template #universalText2>Total Spendings</ng-template>
+      - {{totalSpending | number:'.2-2' }}
+    </h3>
     <!-- <h3 *ngIf="category=='accounts'">Balance - {{totalEarning - totalSpending | number:'.2-2' }}</h3> -->
   </div>
 
@@ -56,8 +64,8 @@
     </app-add-transaction>
   </div>
 
-  <div *ngIf="analyticsClick">
-    <app-analytics1></app-analytics1>
+  <div *ngIf="analyticsClick" class="analytics" >
+    <app-analytics1 [item]="item" [category]="category" [data]="data"></app-analytics1>
   </div>
 
   <div *ngIf="showDocs">

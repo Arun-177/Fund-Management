@@ -25,6 +25,7 @@ import { HomeScreenTableMatComponent } from './Tables/home-screen-table-mat/home
 import { Analytics1Component } from './Analytics/analytics1/analytics1.component';
 import { DocumentsComponent } from './Documents/documents/documents.component';
 import { EncryptionComponent } from './encryption/encryption.component';
+import { UniversalTableComponent } from './Tables/universal-table/universal-table.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { EncryptionComponent } from './encryption/encryption.component';
     HomeScreenTableMatComponent,
     Analytics1Component,
     DocumentsComponent,
-    EncryptionComponent
+    EncryptionComponent,
+    UniversalTableComponent
   ],
   imports: [
     BrowserAnimationsModule,

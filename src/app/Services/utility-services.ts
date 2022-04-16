@@ -1,10 +1,15 @@
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 
 
 @Injectable({
     providedIn:'root'
 })
 export class UtilityService{
+
+
+    constructor(private http: HttpClient){}
 
 
     getDate(value:any){
@@ -36,6 +41,12 @@ export class UtilityService{
         const month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
         
         return date.getDate() + ' ' + month[date.getMonth()] + ', ' + date.getFullYear();
+    }
+
+    getData(data:string,startDate:Number,endDate:Number): Observable<any> {
+        const options = new HttpHeaders({ 'Content-Type': 'application/json' });
+        return this.http.post<any>('http://localhost:3000/getData',{value:data,'startDate':startDate,'endDate':endDate}).pipe(
+      );
     }
 
 }

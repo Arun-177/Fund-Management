@@ -1,1 +1,12 @@
 <p>analytics1 works!</p>
+<div class="overview">
+    <div>Fund Credited - {{fundCredited | number:'.2-2' }}</div>
+    <div>Fund Debited - {{fundDebited | number:'.2-2' }}</div>
+    <div>Share Bought - {{shareBought | number:'.2-2' }}</div>
+    <div>Share Sold - {{shareSold | number:'.2-2' }}</div>
+</div>
+
+<div *ngIf="completeDataLoaded">
+
+    <app-universal-table [data]="completeData"></app-universal-table>
+</div>
