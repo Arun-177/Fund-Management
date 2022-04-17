@@ -82,7 +82,7 @@ export class StockGraphComponent implements OnInit, OnChanges {
       }else{
         this!.lineChartData[0]!.data![this.lineChartLabels.indexOf(tmp.slice(0,tmp.indexOf(',')))]+=element.amount;
       }
-      element.date1 = Number(((this.uService.getDate(element.date) < 10) ? '0' : '') + this.uService.getDate(element.date));
+      // element.date1 = Number(((this.uService.getDate(element.date) < 10) ? '0' : '') + this.uService.getDate(element.date));
       })
       this!.lineChartData[3]!.data[0] = this!.lineChartData[1]!.data[0];
       this!.lineChartData[2]!.data[0] = this!.lineChartData[0]!.data[0];

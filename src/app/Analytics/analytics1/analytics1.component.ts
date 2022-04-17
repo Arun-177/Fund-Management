@@ -33,9 +33,6 @@ export class Analytics1Component implements OnInit, OnChanges {
       (res) => {
         if(res.status=='success'){          
           this.completeData = res.message
-          this.completeData.forEach((element:any)=>{
-            element.date1 = this.service.changeDateFormat(element.date)
-          })
           console.log('in analytics1 -',this.completeData)
           this.completeDataLoaded = true;
         }

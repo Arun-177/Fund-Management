@@ -17,7 +17,7 @@ export class StockTableMatComponent implements OnInit,AfterViewInit {
   
   @Input() data:any;
 
-  displayedColumns: string[] = ['date1', 'name','quantity','price','amount','creditdebit','comment',];
+  displayedColumns: string[] = ['date1', 'name','quantity','price','amount','creditdebit','comment'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -31,12 +31,12 @@ export class StockTableMatComponent implements OnInit,AfterViewInit {
 
   ngAfterViewInit() {
     console.log(this.data)
-    this.data.forEach((element:any)=>{
-      element.date1 = Number(((this.uService.getDate(element.date) < 10) ? '0' : '') + this.uService.getDate(element.date));
-      if(!Number.isNaN(element.date1)){
-        element.date = element.date1 + this.uService.changeDateFormat(element.date).slice(2)
-      }
-    })
+    // this.data.forEach((element:any)=>{
+    //   element.date1 = Number(((this.uService.getDate(element.date) < 10) ? '0' : '') + this.uService.getDate(element.date));
+    //   if(!Number.isNaN(element.date1)){
+    //     element.date = element.date1 + this.uService.changeDateFormat(element.date).slice(2)
+    //   }
+    // })
     this.dataSource = new MatTableDataSource(this.data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

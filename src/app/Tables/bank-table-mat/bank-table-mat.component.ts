@@ -30,13 +30,13 @@ export class BankTableMatComponent implements OnInit,AfterViewInit {
 
   ngAfterViewInit() {
     console.log(this.data)
-    this.data.forEach((element:any)=>{
-      element.date1 = Number(((this.uService.getDate(element.date) < 10) ? '0' : '') + this.uService.getDate(element.date));
-      if(!Number.isNaN(element.date1)){
-        element.date = element.date1 + this.uService.changeDateFormat(element.date).slice(2)
-      }
+    // this.data.forEach((element:any)=>{
+    //   element.date1 = Number(((this.uService.getDate(element.date) < 10) ? '0' : '') + this.uService.getDate(element.date));
+    //   if(!Number.isNaN(element.date1)){
+    //     element.date = element.date1 + this.uService.changeDateFormat(element.date).slice(2)
+    //   }
       
-    })
+    // })
     this.dataSource = new MatTableDataSource(this.data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

@@ -48,8 +48,9 @@
 
 <div class="content">
   <div *ngIf="showContent && !loadingTable && data.length>0" class="table">
-    <app-stock-table-mat *ngIf="(category=='groww' || category=='kite')" [data]="data"></app-stock-table-mat>
-    <app-bank-table-mat *ngIf="(category!='groww' && category!='kite')" [data]="data"></app-bank-table-mat>
+    <!-- <app-stock-table-mat *ngIf="(category=='groww' || category=='kite')" [data]="data"></app-stock-table-mat> -->
+    <!-- <app-bank-table-mat *ngIf="(category!='groww' && category!='kite')" [data]="data"></app-bank-table-mat> -->
+    <app-universal-table [data]="data" [tableLocation]="'singleComponent'" [category]="category" [item]="item"></app-universal-table>
   </div>
   
   <div *ngIf="showContent" class="chart">

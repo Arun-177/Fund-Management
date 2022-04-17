@@ -23,7 +23,7 @@ export class SingleComponent implements OnInit {
   showContent:boolean = true;
 
   data:any;
-  datacopy:any; //one bug here
+  // datacopy:any; //one bug here
   loadingTable:boolean = false
   totalSpending:number =0;
   totalEarning:number =0;
@@ -66,7 +66,7 @@ export class SingleComponent implements OnInit {
       (res) => {
         if(res.status=='success'){          
           this.data = res.message
-          this.datacopy = res.message
+          // this.datacopy = res.message
           this.data.forEach((element:any)=>{
             (element.creditdebit=='credit' || element.creditdebit=='sell') ? this.totalEarning+=element.amount : this.totalSpending+=element.amount
           })
