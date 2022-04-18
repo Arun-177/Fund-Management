@@ -16,7 +16,13 @@ export class SingleService {
         const options = new HttpHeaders({ 'Content-Type': 'application/json' });
         return this.http.post<any>('http://localhost:3000/getData',{value:data,'startDate':startDate,'endDate':endDate}).pipe(
       );
-  }
+    }
+
+    getDocsData(key:string,category:string,item:string): Observable<any> {
+        const options = new HttpHeaders({ 'Content-Type': 'application/json' });
+        return this.http.post<any>('http://localhost:3000/getDocsData',{'key':key,'category':category,'item':item}).pipe(
+      );
+    }
   
 
 }

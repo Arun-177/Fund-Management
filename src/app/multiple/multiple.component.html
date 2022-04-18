@@ -1,5 +1,16 @@
 <div class="options" >
-    <div class="list-header" *ngFor="let tmp of items" (click)="clickedItem(tmp)" [ngClass]="{'change-font-color-on-click': item==tmp}">{{tmp}}</div>
+    <div class="list-header" 
+        *ngFor="let tmp of items" 
+        (click)="clickedItem(tmp)" 
+        [ngClass]="{'change-font-color-on-click': item==tmp}">
+        <span *ngIf="tmp=='icici'">
+            {{tmp | uppercase}}
+        </span>
+        <span *ngIf="tmp!='icici'">
+            {{tmp | titlecase}}
+        </span>
+    </div>
+
 </div>
 
 <app-single *ngIf="loadsingle" [item]="item" [category]="category"></app-single>

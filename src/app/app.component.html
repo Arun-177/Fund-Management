@@ -1,13 +1,18 @@
 <app-header (addTransaction)="addTransactionEvent($event)"></app-header>
 
 <div class="options" >
-    <!-- Select an Option
-    <select name="cars" id="cars">
-    <option *ngFor="let tmp of dropDownList" [value]="tmp">{{tmp}}</option>
 
-    <option value="audi">Audi</option> -->
-    <!-- </select> -->
-    <div class="list-header" *ngFor="let tmp of dropDownList" (click)="clickedItem(tmp)" [ngClass]="{'change-font-color-on-click': (item==tmp && items==undefined)}">{{tmp}}</div>
+    <div class="list-header" 
+        *ngFor="let tmp of dropDownList" 
+        (click)="clickedItem(tmp)" 
+        [ngClass]="{'change-font-color-on-click': (item==tmp && items==undefined)}">
+        <span *ngIf="tmp=='mmt' || tmp=='hpcl'">
+            {{tmp | uppercase}}
+        </span>
+        <span *ngIf="tmp!='mmt' && tmp!='hpcl'">
+            {{tmp | titlecase}}
+        </span>
+    </div>
 </div>
 
 <app-single *ngIf="isSingle" [item]="item"  [category]="category"></app-single>
@@ -19,6 +24,9 @@
     <div class="item-1">
         <h3>Total Earnings - {{totalEarning}}</h3>
         <h3>Total Spendings - {{totalSpending}}</h3>
+        <!-- <app-home-screen-table-mat [data]="data"></app-home-screen-table-mat> -->
+        <app-universal-table [data]="data" [tableLocation]="'homeScreen'" [category]="'homeScreen'" [item]="'homeScreen'"></app-universal-table>
+
     </div>
     <app-stock-graph class="chart" [graphData]="data"></app-stock-graph>
 
@@ -26,3 +34,5 @@
 
 
 <!-- <mat-slider thumbLabel tickInterval="5" min="1" max="100" step="1" value="50" style="width: 600px;"></mat-slider> -->
+
+<!-- <app-encryption></app-encryption> -->

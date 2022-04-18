@@ -1,24 +1,76 @@
 <div class="body">
-  <div class="header">
+  
+  <div *ngIf="!filtersClick && !docsClick" class="header">
+    <div *ngIf="!addTranscationClick" class="change-cursor" (click)="AddTransactionClicked()">Add Transaction</div>
+    <div *ngIf="addTranscationClick" class="change-cursor font-color-red" (click)="AddTransactionClicked()">Cancel</div>
+    
+    <div class="change-cursor" (click)="filtersClicked()">Filters</div>
 
-    <div *ngIf="showContent" class="change-cursor" (click)="AddTransactionClicked()">Add Transaction</div>
-    <div *ngIf="!showContent" class="change-cursor font-color-red" (click)="AddTransactionClicked()">Cancel</div>
-    <div class="change-cursor">Header Line</div>
-    <div class="change-cursor">Header Line</div>
+    <div *ngIf="!analyticsClick" class="change-cursor" (click)="analyticsClicked()">Analytics</div>
+    <div *ngIf="analyticsClick" class="change-cursor font-color-red" (click)="analyticsClicked()">Cancel</div>
+    
+    <div class="change-cursor" (click)="docsClicked()">Doc's</div>
+  </div>
+
+  <div *ngIf="filtersClick && !docsClick" class="header">
+    <div *ngIf="filtersClick && !updateDateClick" class="change-cursor font-color-red" (click)="filtersClicked()">Cancel</div>
+
+    <div *ngIf="updateDateClick" class="change-cursor font-color-red" (click)="updateDateClicked()">Cancel</div>
+    <div *ngIf="!updateDateClick" class="change-cursor" (click)="updateDateClicked()">Update Date</div>
+    <div *ngIf="updateDateClick">Start Date - <input [formControl]="startDate" type="date" id="date-object" /></div>
+    <div *ngIf="updateDateClick">End Date - <input [formControl]="endDate" type="date" id="date-object" /></div>
+    <div *ngIf="updateDateClick" class="change-cursor" (click)="getData(startDate.value,endDate.value)">Submit</div>
+
+  </div>
+
+  <div *ngIf="!filtersClick && docsClick && !showDocs" class="header">
+    <div *ngIf="!showDocs" class="change-cursor font-color-red" (click)="docsClicked()">Cancel</div>
+    <div>Key - <input [formControl]="docsText" type="text" /></div>
+    <div class="change-cursor" (click)="docsSubmit(docsText.value)">Submit</div>
+    
+    
+  </div>
+  <div *ngIf="!filtersClick && docsClick && showDocs" class="header change-cursor font-color-red" (click)="docsGoBack()">Go Back</div>
+
+  <div *ngIf="!showDocs" class="item-1">
+    <h3>
+      <span *ngIf="(item=='icici' || item=='paytm');else universalText">Total Credits</span>
+      <ng-template #universalText>Total Earnings</ng-template>
+      - {{totalEarning | number:'.2-2' }}
+    </h3>
+    <h3>
+      <span *ngIf="(item=='icici' || item=='paytm');else universalText2">Total Debits</span>
+      <ng-template #universalText2>Total Spendings</ng-template>
+      - {{totalSpending | number:'.2-2' }}
+    </h3>
+    <!-- <h3 *ngIf="category=='accounts'">Balance - {{totalEarning - totalSpending | number:'.2-2' }}</h3> -->
   </div>
 
 <div class="content">
   <div *ngIf="showContent && !loadingTable && data.length>0" class="table">
-    <app-stock-table-mat *ngIf="category != 'Accounts'" [data]="data"></app-stock-table-mat>
-    <app-bank-table-mat *ngIf="category == 'Accounts'" [data]="data"></app-bank-table-mat>
+    <!-- <app-stock-table-mat *ngIf="(category=='groww' || category=='kite')" [data]="data"></app-stock-table-mat> -->
+    <!-- <app-bank-table-mat *ngIf="(category!='groww' && category!='kite')" [data]="data"></app-bank-table-mat> -->
+    <app-universal-table [data]="data" [tableLocation]="'singleComponent'" [category]="category" [item]="item"></app-universal-table>
   </div>
   
   <div *ngIf="showContent" class="chart">
     <app-stock-graph [graphData]="data"></app-stock-graph>
   </div>
 
-  <div *ngIf="!showContent" class="width-100">
-    <app-add-transaction [showSelectionOption]="false" [isAccount]="true" [isStock]="false"></app-add-transaction>
+  <div *ngIf="addTranscationClick" class="width-100">
+    <app-add-transaction 
+      [showSelectionOption]="false"  
+      [isAccount]="(category!='groww' && category!='kite') ? true : false" 
+      [isStock]="(category=='groww' || category=='kite') ? true:false">
+    </app-add-transaction>
+  </div>
+
+  <div *ngIf="analyticsClick" class="analytics" >
+    <app-analytics1 [item]="item" [category]="category" [data]="data"></app-analytics1>
+  </div>
+
+  <div *ngIf="showDocs">
+    <app-documents [item]="item" [category]="category" [docsData]="docsData.message[0].comment"></app-documents>
   </div>
 
 
